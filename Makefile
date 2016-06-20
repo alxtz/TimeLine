@@ -52,12 +52,14 @@ SOURCES       = main.cpp \
 		MainWindow.cpp \
 		TimeLineView/TimeLineView.cpp \
 		TimeLineView/TimeLineScene/TimeLineScene.cpp \
-		TimeLineView/TimeLineScene/TimeLineMachine.cpp moc_MainWindow.cpp
+		TimeLineView/TimeLineScene/TimeLineMachine.cpp \
+		TimeLineView/TimeLineScene/PlaneData.cpp moc_MainWindow.cpp
 OBJECTS       = main.o \
 		MainWindow.o \
 		TimeLineView.o \
 		TimeLineScene.o \
 		TimeLineMachine.o \
+		PlaneData.o \
 		moc_MainWindow.o
 DIST          = ../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.6/gcc_64/mkspecs/common/unix.conf \
@@ -196,11 +198,13 @@ DIST          = ../../Qt/5.6/gcc_64/mkspecs/features/spec_pre.prf \
 		ShowAirTimeLine.pro MainWindow.h \
 		TimeLineView/TimeLineView.h \
 		TimeLineView/TimeLineScene/TimeLineScene.h \
-		TimeLineView/TimeLineScene/TimeLineMachine.h main.cpp \
+		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		TimeLineView/TimeLineScene/PlaneData.h main.cpp \
 		MainWindow.cpp \
 		TimeLineView/TimeLineView.cpp \
 		TimeLineView/TimeLineScene/TimeLineScene.cpp \
-		TimeLineView/TimeLineScene/TimeLineMachine.cpp
+		TimeLineView/TimeLineScene/TimeLineMachine.cpp \
+		TimeLineView/TimeLineScene/PlaneData.cpp
 QMAKE_TARGET  = ShowAirTimeLine
 DESTDIR       = 
 TARGET        = ShowAirTimeLine
@@ -503,8 +507,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents MainWindow.h TimeLineView/TimeLineView.h TimeLineView/TimeLineScene/TimeLineScene.h TimeLineView/TimeLineScene/TimeLineMachine.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp MainWindow.cpp TimeLineView/TimeLineView.cpp TimeLineView/TimeLineScene/TimeLineScene.cpp TimeLineView/TimeLineScene/TimeLineMachine.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents MainWindow.h TimeLineView/TimeLineView.h TimeLineView/TimeLineScene/TimeLineScene.h TimeLineView/TimeLineScene/TimeLineMachine.h TimeLineView/TimeLineScene/PlaneData.h $(DISTDIR)/
+	$(COPY_FILE) --parents main.cpp MainWindow.cpp TimeLineView/TimeLineView.cpp TimeLineView/TimeLineScene/TimeLineScene.cpp TimeLineView/TimeLineScene/TimeLineMachine.cpp TimeLineView/TimeLineScene/PlaneData.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -650,6 +654,7 @@ moc_MainWindow.cpp: ../../Qt/5.6/gcc_64/include/QtWidgets/QMainWindow \
 		TimeLineView/TimeLineScene/TimeLineScene.h \
 		../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
 		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		TimeLineView/TimeLineScene/PlaneData.h \
 		MainWindow.h
 	/home/bj/Qt/5.6/gcc_64/bin/moc $(DEFINES) -I/home/bj/Qt/5.6/gcc_64/mkspecs/linux-g++ -I/home/bj/桌面/ShowAirTimeLine -I/home/bj/Qt/5.6/gcc_64/include -I/home/bj/Qt/5.6/gcc_64/include/QtWidgets -I/home/bj/Qt/5.6/gcc_64/include/QtGui -I/home/bj/Qt/5.6/gcc_64/include/QtCore MainWindow.h -o moc_MainWindow.cpp
 
@@ -794,7 +799,8 @@ main.o: main.cpp ../../Qt/5.6/gcc_64/include/QtWidgets/QApplication \
 		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		TimeLineView/TimeLineScene/TimeLineScene.h \
 		../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
-		TimeLineView/TimeLineScene/TimeLineMachine.h
+		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		TimeLineView/TimeLineScene/PlaneData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 MainWindow.o: MainWindow.cpp MainWindow.h \
@@ -917,7 +923,8 @@ MainWindow.o: MainWindow.cpp MainWindow.h \
 		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		TimeLineView/TimeLineScene/TimeLineScene.h \
 		../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
-		TimeLineView/TimeLineScene/TimeLineMachine.h
+		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		TimeLineView/TimeLineScene/PlaneData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MainWindow.o MainWindow.cpp
 
 TimeLineView.o: TimeLineView/TimeLineView.cpp TimeLineView/TimeLineView.h \
@@ -1035,7 +1042,8 @@ TimeLineView.o: TimeLineView/TimeLineView.cpp TimeLineView/TimeLineView.h \
 		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		TimeLineView/TimeLineScene/TimeLineScene.h \
 		../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
-		TimeLineView/TimeLineScene/TimeLineMachine.h
+		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		TimeLineView/TimeLineScene/PlaneData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TimeLineView.o TimeLineView/TimeLineView.cpp
 
 TimeLineScene.o: TimeLineView/TimeLineScene/TimeLineScene.cpp ../../Qt/5.6/gcc_64/include/QtGui/QBrush \
@@ -1126,15 +1134,12 @@ TimeLineScene.o: TimeLineView/TimeLineScene/TimeLineScene.cpp ../../Qt/5.6/gcc_6
 		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qfont.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qpen.h \
-		TimeLineView/TimeLineScene/TimeLineMachine.h
+		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		TimeLineView/TimeLineScene/PlaneData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TimeLineScene.o TimeLineView/TimeLineScene/TimeLineScene.cpp
 
-TimeLineMachine.o: TimeLineView/TimeLineScene/TimeLineMachine.cpp TimeLineView/TimeLineScene/TimeLineMachine.h \
-		../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
-		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qobject.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qobjectdefs.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qnamespace.h \
+TimeLineMachine.o: TimeLineView/TimeLineScene/TimeLineMachine.cpp ../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsRectItem \
+		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsitem.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qglobal.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qconfig.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qfeatures.h \
@@ -1164,6 +1169,9 @@ TimeLineMachine.o: TimeLineView/TimeLineScene/TimeLineMachine.cpp TimeLineView/T
 		../../Qt/5.6/gcc_64/include/QtCore/qmutex.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qnumeric.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qversiontagging.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qobject.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qobjectdefs.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qnamespace.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qobjectdefs_impl.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qstring.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qchar.h \
@@ -1186,36 +1194,52 @@ TimeLineMachine.o: TimeLineView/TimeLineScene/TimeLineMachine.cpp TimeLineView/T
 		../../Qt/5.6/gcc_64/include/QtCore/qvarlengtharray.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qcontainerfwd.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qobject_impl.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qvariant.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qmap.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qdebug.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qhash.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qtextstream.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qiodevice.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qlocale.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qshareddata.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qvector.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qpoint.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qset.h \
+		../../Qt/5.6/gcc_64/include/QtCore/qcontiguouscache.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qrect.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qmargins.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qsize.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qbrush.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qvector.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qcolor.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qrgb.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qrgba64.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qpainterpath.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qmatrix.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qpolygon.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qregion.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qwindowdefs.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qwindowdefs_win.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qdatastream.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qiodevice.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qline.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qtransform.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qpainterpath.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qimage.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qpaintdevice.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qpixelformat.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qpixmap.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qpaintdevice.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qcolor.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qrgb.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qrgba64.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qsharedpointer.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qshareddata.h \
-		../../Qt/5.6/gcc_64/include/QtCore/qhash.h \
 		../../Qt/5.6/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qimage.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qpixelformat.h \
+		../../Qt/5.6/gcc_64/include/QtGui/qtransform.h \
+		../../Qt/5.6/gcc_64/include/QtGui/QBrush \
+		../../Qt/5.6/gcc_64/include/QtGui/qbrush.h \
+		../../Qt/5.6/gcc_64/include/QtGui/QColor \
+		TimeLineView/TimeLineScene/TimeLineMachine.h \
+		../../Qt/5.6/gcc_64/include/QtWidgets/QGraphicsScene \
+		../../Qt/5.6/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../../Qt/5.6/gcc_64/include/QtGui/qfont.h \
-		../../Qt/5.6/gcc_64/include/QtGui/qpen.h
+		../../Qt/5.6/gcc_64/include/QtGui/qpen.h \
+		TimeLineView/TimeLineScene/PlaneData.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TimeLineMachine.o TimeLineView/TimeLineScene/TimeLineMachine.cpp
+
+PlaneData.o: TimeLineView/TimeLineScene/PlaneData.cpp TimeLineView/TimeLineScene/PlaneData.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PlaneData.o TimeLineView/TimeLineScene/PlaneData.cpp
 
 moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_MainWindow.o moc_MainWindow.cpp

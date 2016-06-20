@@ -16,9 +16,11 @@ SOURCES += main.cpp\
         MainWindow.cpp \
     TimeLineView/TimeLineView.cpp \
     TimeLineView/TimeLineScene/TimeLineScene.cpp \
-    TimeLineView/TimeLineScene/TimeLineMachine.cpp
+    TimeLineView/TimeLineScene/TimeLineMachine.cpp \
+    TimeLineView/TimeLineScene/PlaneData.cpp
 
 HEADERS  += MainWindow.h \
     TimeLineView/TimeLineView.h \
     TimeLineView/TimeLineScene/TimeLineScene.h \
-    TimeLineView/TimeLineScene/TimeLineMachine.h
+    TimeLineView/TimeLineScene/TimeLineMachine.h \
+    TimeLineView/TimeLineScene/PlaneData.h

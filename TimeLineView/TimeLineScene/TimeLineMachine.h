@@ -2,7 +2,11 @@
 #define TIMELINEMACHINE_H
 
 
+#include <vector>
 #include <QGraphicsScene>
+#include "./PlaneData.h"
+
+using namespace std;
 
 class TimeLineMachine
 {
@@ -13,6 +17,12 @@ class TimeLineMachine
         QGraphicsScene * useScene;
 
         void readTimeLineData();
+
+        void readTimeLineDataTest ();
+
+        void paintTimeLine();
+
+        vector<PlaneData * > planeDataList;
 };
 
 
